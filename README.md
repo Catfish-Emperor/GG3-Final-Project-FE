@@ -3,6 +3,7 @@
 A simple web project for completition requirement of Generasi GIGIH 3.0 Program by GoTo Impact Foundation, full-stack development track. This project is made using Mongodb, Express.js, React.js and Node.js (MERN) stack. This project is based to clone [Tokopedia Play](https://www.tokopedia.com/play/channels) which will show video list with thumbnail from youtube to users and the users can click the thumbnail to go to Video Detail page.
 
 all of video and product data are just for the sake of showcasing in a learning project and not real products.
+deployed app link: [https://muh-gg3-final.vercel.app/](https://muh-gg3-final.vercel.app/)
 
 ## Features:
 * Home page with list of videos and their thumbnails from [Youtube](https://www.youtube.com), user can click the thumbnail to go to detail video page.
@@ -15,21 +16,10 @@ all of video and product data are just for the sake of showcasing in a learning 
 
 ## How to run in Local:
 1. git clone <https://github.com/algol007/generasi-gigih-be.git](https://github.com/Catfish-Emperor/GG-3.0-Finpro.git>
-2. open the file with your code editor
-3. cd fp-backend then create .env and adjust the PORT, MONGOSTRING, and CLIENTMONGOSTRING
-
-MONGOSTRING is your Mongodb uri/your database name (ex:mongodb://0.0.0.0:27017/databaseName)
-
-CLIENTMONGOSTRING is just your Mongodb uri (ex:mongodb://0.0.0.0:27017)
-
+2. cd fp-frontend
+3. go to config.js and adjust the backend server url
 4. npm install
-5. node initialize_db.js to set the mock data for database
-6. npm start
-7. cd ..
-8. cd fp-frontend
-9. go to config.js and adjust your local backendPort
-10. npm install
-11. npm start
+5. npm start
 
 ## Database Model
 There are three database models:
