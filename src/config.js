@@ -1,1 +1,1 @@
-export const backendPort = "http://localhost:5000"
+export const backendPort = "https://cooperative-wasp-shawl.cyclic.cloud/"
