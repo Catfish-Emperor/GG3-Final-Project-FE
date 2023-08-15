@@ -1,68 +1,161 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Final Project of Generasi GIGIH 3.0
 
-## Available Scripts
+A simple web project for completition requirement of Generasi GIGIH 3.0 Program by GoTo Impact Foundation, full-stack development track. This project is made using Mongodb, Express.js, React.js and Node.js (MERN) stack. This project is based to clone [Tokopedia Play](https://www.tokopedia.com/play/channels) which will show video list with thumbnail from youtube to users and the users can click the thumbnail to go to Video Detail page.
 
-In the project directory, you can run:
+all of video and product data are just for the sake of showcasing in a learning project and not real products.
+deployed app link: [https://muh-gg3-final.vercel.app/](https://muh-gg3-final.vercel.app/)
 
-### `npm start`
+## Features:
+* Home page with list of videos and their thumbnails from [Youtube](https://www.youtube.com), user can click the thumbnail to go to detail video page.
+* Detail Video page where user can see youtube embed video, product list, and comment section
+* link to shop for each product list (in this project, I use [example.com](example.com) as placeholder)
+* User can submit their own comment by input their username and comment and see their submitted comment
+* Navbar that contain link back to home page, user profile picture on top right, the user is set as "guest" as this project don't provide signup & sign in, and toggle light/dark mode beside the user avatar
+* Randomized user avatar for commenting from [RoboHash](https://robohash.org/)
+* Loading indicator using spinner and skeleton from chakraUI
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## How to run in Local:
+1. git clone https://github.com/Catfish-Emperor/GG3-Final-Project-FE.git
+2. open it in your editor
+3. go to config.js and adjust the backend server url
+4. npm install
+5. npm start
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Database Model
+There are three database models:
+* Videos
+* Products
+* Comments
 
-### `npm test`
+### Videos
+* video object
+```
+{
+  "_id": {"$oid": "xxxxxx"},
+  "videoId": "01",
+  "videoUrl": "https://www.youtube.com/embed/xxxxxx",
+  "videoTitle": "xxxx",
+  "imageThumbnailUrl": "https://youtube.com/thumbnail-Img-1.jpg"
+}
+```
+**GET /**
+Returns all videos in the database.
+* **URL Params**  
+  None
+* **Data Params**  
+  None
+* **Success Response:**  
+* **Code:** 200  
+  **Content:**  
+```
+{
+  videos: [
+           {<video_object>},
+           {<video_object>},
+           {<video_object>}
+         ]
+}
+```
+**GET /video/:id**
+Returns selected video by videoId in the database.
+* **URL Params**  
+*Required:* `id=[integer]`
+* **Data Params**  
+  None
+* **Success Response:**  
+* **Code:** 200  
+  **Content:**  
+```
+{
+  video: [
+           {<video_object>}
+         ]
+}
+```
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Products
+* product object
+```
+{
+  "_id": {"$oid": "xxxxx"},
+  "productLink": "https://example.com/",
+  "productImg": "https://images.unsplash.com/xxxxx",
+  "title": "xxxxx",
+  "price": "Rp. 10.000",
+  "videoId": "01"
+}
+```
 
-### `npm run build`
+**GET /product/:id**
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Returns all products in the database that associated to the videoId, got the input from :id param.
+* **URL Params**  
+  *Required:* `id=[integer]`
+* **Data Params**  
+  None
+* **Success Response:**  
+* **Code:** 200  
+  **Content:**  
+```
+{
+  products: [
+           {<product_object>},
+           {<product_object>},
+           {<product_object>}
+         ]
+}
+```
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### Comments
+* comment object
+```
+{
+  "_id": {"$oid": "xxxxxxx"},
+  "userName": "User 1",
+  "comment": "Comment from User 1 about video 01",
+  "timeStamp": {"$date": "xxxxxx"},
+  "videoId": "01"
+}
+```
+**GET /comment/:id**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Returns all comments in the database that are related to the videoId
+* **URL Params**  
+  *Required:* `id=[integer]`
+* **Data Params**  
+  None
+* **Success Response:**  
+* **Code:** 200  
+  **Content:**  
+```
+{
+  comments: [
+           {<comment_object>},
+           {<comment_object>},
+           {<comment_object>}
+         ]
+}
+```
+**POST /comment/:id**
 
-### `npm run eject`
+Post a comment to the database associated to the videoId
+* **URL Params**  
+  *Required:* `id=[integer]`
+* **Data Params**  
+  None
+* **Success Response:**  
+* **Code:** 201  
+  **example post req body type raw json:**  
+```
+{
+    "userName": "Hadi",
+    "comment": "This product is good",
+    "videoId": "01"
+}
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
