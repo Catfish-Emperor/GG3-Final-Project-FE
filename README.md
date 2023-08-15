@@ -15,8 +15,8 @@ deployed app link: [https://muh-gg3-final.vercel.app/](https://muh-gg3-final.ver
 * Loading indicator using spinner and skeleton from chakraUI
 
 ## How to run in Local:
-1. git clone <https://github.com/algol007/generasi-gigih-be.git](https://github.com/Catfish-Emperor/GG-3.0-Finpro.git>
-2. cd fp-frontend
+1. git clone https://github.com/Catfish-Emperor/GG3-Final-Project-FE.git
+2. open it in your editor
 3. go to config.js and adjust the backend server url
 4. npm install
 5. npm start
